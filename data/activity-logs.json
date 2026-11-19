@@ -1,0 +1,502 @@
+[
+  {
+    "id": "log_1795087987663_2_befi",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng nhập thành công",
+    "target": "Nguyễn Vũ Xuân Kiên đăng nhập với vai trò [ADMIN]",
+    "timestamp": "2026-11-19T11:33:07.667Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1795087976814_1_ji0c",
+    "userId": "usr_stu_1794595179853",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "student",
+    "action": "Đăng xuất tài khoản",
+    "target": "Nguyễn Vũ Xuân Kiên (223148201057) đăng xuất khỏi hệ thống",
+    "timestamp": "2026-11-19T11:32:56.814Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1795087962240_3_crmb",
+    "userId": "usr_stu_1795087962240_2_rhkz",
+    "userName": "Hoàng Minh Đức",
+    "userRole": "student",
+    "action": "Sinh viên tự đăng ký",
+    "target": "Sinh viên Hoàng Minh Đức (223148201051) - Lớp CNTT1.K23",
+    "timestamp": "2026-11-19T11:32:42.242Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1795087918318_1_vi2s",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng xuất tài khoản",
+    "target": "Nguyễn Vũ Xuân Kiên (admin) đăng xuất khỏi hệ thống",
+    "timestamp": "2026-11-19T11:31:58.318Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1795082613232_3_yyfc",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng nhập thành công",
+    "target": "Nguyễn Vũ Xuân Kiên đăng nhập với vai trò [ADMIN]",
+    "timestamp": "2026-11-19T10:03:33.232Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1795082592482_2_10an",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng xuất tài khoản",
+    "target": "Nguyễn Vũ Xuân Kiên (admin) đăng xuất khỏi hệ thống",
+    "timestamp": "2026-11-19T10:03:12.482Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1795082588219_1_3o34",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng nhập thành công",
+    "target": "Nguyễn Vũ Xuân Kiên đăng nhập với vai trò [ADMIN]",
+    "timestamp": "2026-11-19T10:03:08.219Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794801413496_12_mwkx",
+    "userId": "usr_stu_1794595179853",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "student",
+    "action": "Đăng nhập thành công",
+    "target": "Nguyễn Vũ Xuân Kiên đăng nhập với vai trò [STUDENT]",
+    "timestamp": "2026-11-16T03:56:53.496Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794801413496_11_c9tj",
+    "userId": "usr_stu_1794595179853",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "student",
+    "action": "Đổi phiên đăng nhập",
+    "target": "Chuyển sang tài khoản Nguyễn Vũ Xuân Kiên (student)",
+    "timestamp": "2026-11-16T03:56:53.496Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794801398338_10_k4s9",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng xuất tài khoản",
+    "target": "Nguyễn Vũ Xuân Kiên (admin) đăng xuất khỏi hệ thống",
+    "timestamp": "2026-11-16T03:56:38.338Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794801263498_9_lvwi",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng nhập thành công",
+    "target": "Nguyễn Vũ Xuân Kiên đăng nhập với vai trò [ADMIN]",
+    "timestamp": "2026-11-16T03:54:23.498Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794801263498_8_m4jo",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đổi phiên đăng nhập",
+    "target": "Chuyển sang tài khoản Nguyễn Vũ Xuân Kiên (admin)",
+    "timestamp": "2026-11-16T03:54:23.498Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794801250131_7_hzuj",
+    "userId": "usr_stu_1794595179853",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "student",
+    "action": "Đăng xuất tài khoản",
+    "target": "Nguyễn Vũ Xuân Kiên (223148201057) đăng xuất khỏi hệ thống",
+    "timestamp": "2026-11-16T03:54:10.131Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794801234032_6_4ftn",
+    "userId": "usr_stu_1794595179853",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "student",
+    "action": "Đăng nhập thành công",
+    "target": "Nguyễn Vũ Xuân Kiên đăng nhập với vai trò [STUDENT]",
+    "timestamp": "2026-11-16T03:53:54.032Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794801234032_5_e4vr",
+    "userId": "usr_stu_1794595179853",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "student",
+    "action": "Đổi phiên đăng nhập",
+    "target": "Chuyển sang tài khoản Nguyễn Vũ Xuân Kiên (student)",
+    "timestamp": "2026-11-16T03:53:54.032Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794801227339_4_ijqe",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng xuất tài khoản",
+    "target": "Nguyễn Vũ Xuân Kiên (admin) đăng xuất khỏi hệ thống",
+    "timestamp": "2026-11-16T03:53:47.339Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794799854407_3_ntmp",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng nhập thành công",
+    "target": "Nguyễn Vũ Xuân Kiên đăng nhập với vai trò [ADMIN]",
+    "timestamp": "2026-11-16T03:30:54.407Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794799854407_2_5nhk",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đổi phiên đăng nhập",
+    "target": "Chuyển sang tài khoản Nguyễn Vũ Xuân Kiên (admin)",
+    "timestamp": "2026-11-16T03:30:54.407Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794799846823_1_qfie",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Đăng xuất tài khoản",
+    "target": "ThS. Hoàng Trần Hiếu (gv_hoangtranhieu) đăng xuất khỏi hệ thống",
+    "timestamp": "2026-11-16T03:30:46.823Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688210235_40_0vkz",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Giảng viên duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi vào môn sub_db_intro (Bloom Bậc 2)",
+    "timestamp": "2026-11-14T20:30:10.235Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688210234_39_q39o",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Tạo câu hỏi mới",
+    "target": "Thêm câu hỏi vào môn sub_db_intro",
+    "timestamp": "2026-11-14T20:30:10.234Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688208763_37_8fda",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Giảng viên duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi vào môn sub_db_intro (Bloom Bậc 2)",
+    "timestamp": "2026-11-14T20:30:08.763Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688208762_36_ein5",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Tạo câu hỏi mới",
+    "target": "Thêm câu hỏi vào môn sub_db_intro",
+    "timestamp": "2026-11-14T20:30:08.762Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688206675_34_sb86",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Giảng viên duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi vào môn sub_db_intro (Bloom Bậc 2)",
+    "timestamp": "2026-11-14T20:30:06.675Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688206674_33_67qt",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Tạo câu hỏi mới",
+    "target": "Thêm câu hỏi vào môn sub_db_intro",
+    "timestamp": "2026-11-14T20:30:06.674Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688204907_31_decb",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Giảng viên duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi vào môn sub_db_intro (Bloom Bậc 2)",
+    "timestamp": "2026-11-14T20:30:04.907Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688204907_30_fumz",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Tạo câu hỏi mới",
+    "target": "Thêm câu hỏi vào môn sub_db_intro",
+    "timestamp": "2026-11-14T20:30:04.907Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688200395_28_bli4",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Giảng viên duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi vào môn sub_db_intro (Bloom Bậc 2)",
+    "timestamp": "2026-11-14T20:30:00.395Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688200395_27_q96q",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Tạo câu hỏi mới",
+    "target": "Thêm câu hỏi vào môn sub_db_intro",
+    "timestamp": "2026-11-14T20:30:00.395Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688193867_25_o2rz",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Giảng viên duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi vào môn sub_db_intro (Bloom Bậc 3)",
+    "timestamp": "2026-11-14T20:29:53.867Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688193866_24_igsh",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Tạo câu hỏi mới",
+    "target": "Thêm câu hỏi vào môn sub_db_intro",
+    "timestamp": "2026-11-14T20:29:53.866Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688191083_22_a53z",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Giảng viên duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi vào môn sub_db_intro (Bloom Bậc 3)",
+    "timestamp": "2026-11-14T20:29:51.083Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688191082_21_dyio",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Tạo câu hỏi mới",
+    "target": "Thêm câu hỏi vào môn sub_db_intro",
+    "timestamp": "2026-11-14T20:29:51.082Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688190681_19_s6jt",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Giảng viên duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi vào môn sub_db_intro (Bloom Bậc 3)",
+    "timestamp": "2026-11-14T20:29:50.681Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688190681_18_mpte",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Tạo câu hỏi mới",
+    "target": "Thêm câu hỏi vào môn sub_db_intro",
+    "timestamp": "2026-11-14T20:29:50.681Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688190315_16_whi7",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Giảng viên duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi vào môn sub_db_intro (Bloom Bậc 3)",
+    "timestamp": "2026-11-14T20:29:50.315Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688190315_15_jkpw",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Tạo câu hỏi mới",
+    "target": "Thêm câu hỏi vào môn sub_db_intro",
+    "timestamp": "2026-11-14T20:29:50.315Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688189805_13_5qtw",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Giảng viên duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi vào môn sub_db_intro (Bloom Bậc 3)",
+    "timestamp": "2026-11-14T20:29:49.805Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688189804_12_68vx",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Tạo câu hỏi mới",
+    "target": "Thêm câu hỏi vào môn sub_db_intro",
+    "timestamp": "2026-11-14T20:29:49.804Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688123042_8_y2pr",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Upload tài liệu học phần",
+    "target": "Tải lên tài liệu: Đề cương chi tiết học phần",
+    "timestamp": "2026-11-14T20:28:43.042Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688016497_6_dvxr",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Đăng nhập thành công",
+    "target": "ThS. Hoàng Trần Hiếu đăng nhập với vai trò [LECTURER]",
+    "timestamp": "2026-11-14T20:26:56.497Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688016497_5_razo",
+    "userId": "usr_lecturer_7",
+    "userName": "ThS. Hoàng Trần Hiếu",
+    "userRole": "lecturer",
+    "action": "Đổi phiên đăng nhập",
+    "target": "Chuyển sang tài khoản ThS. Hoàng Trần Hiếu (lecturer)",
+    "timestamp": "2026-11-14T20:26:56.497Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794688003064_4_lfnn",
+    "userId": "usr_lecturer_1",
+    "userName": "ThS. Đào Ngọc Tú",
+    "userRole": "lecturer",
+    "action": "Đăng xuất tài khoản",
+    "target": "ThS. Đào Ngọc Tú (gv_daongoctu) đăng xuất khỏi hệ thống",
+    "timestamp": "2026-11-14T20:26:43.064Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794687964225_3_19pw",
+    "userId": "usr_lecturer_1",
+    "userName": "ThS. Đào Ngọc Tú",
+    "userRole": "lecturer",
+    "action": "Đăng nhập thành công",
+    "target": "ThS. Đào Ngọc Tú đăng nhập với vai trò [LECTURER]",
+    "timestamp": "2026-11-14T20:26:04.225Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794687964225_2_w0yp",
+    "userId": "usr_lecturer_1",
+    "userName": "ThS. Đào Ngọc Tú",
+    "userRole": "lecturer",
+    "action": "Đổi phiên đăng nhập",
+    "target": "Chuyển sang tài khoản ThS. Đào Ngọc Tú (lecturer)",
+    "timestamp": "2026-11-14T20:26:04.225Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794687938616_1_fg5c",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng xuất tài khoản",
+    "target": "TS. Nguyễn Tùng Sơn (admin) đăng xuất khỏi hệ thống",
+    "timestamp": "2026-11-14T20:25:38.616Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794687648930_2_8809",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đăng nhập thành công",
+    "target": "TS. Nguyễn Tùng Sơn đăng nhập với vai trò [ADMIN]",
+    "timestamp": "2026-11-14T20:20:48.930Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_1794687648930_1_k7ti",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên",
+    "userRole": "admin",
+    "action": "Đổi phiên đăng nhập",
+    "target": "Chuyển sang tài khoản TS. Nguyễn Tùng Sơn (admin)",
+    "timestamp": "2026-11-14T20:20:48.930Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "id": "log_01",
+    "userId": "usr_admin",
+    "userName": "Nguyễn Vũ Xuân Kiên (Admin)",
+    "userRole": "admin",
+    "action": "Phân công môn học",
+    "target": "Gán môn Nhập môn trí tuệ nhân tạo cho ThS. Đào Việt Anh",
+    "timestamp": "2026-10-30T09:10:00Z",
+    "ipAddress": "172.16.0.1"
+  },
+  {
+    "id": "log_02",
+    "userId": "usr_lecturer_9",
+    "userName": "ThS. Nguyễn Thị Hồng Mai (Giảng viên)",
+    "userRole": "lecturer",
+    "action": "Duyệt câu hỏi AI",
+    "target": "Duyệt câu hỏi \"Tính toán địa chỉ IP khả dụng\" vào ngân hàng môn Mạng máy tính",
+    "timestamp": "2026-10-30T08:00:00Z",
+    "ipAddress": "172.16.1.15"
+  }
+]

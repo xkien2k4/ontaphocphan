@@ -1,0 +1,322 @@
+{
+  "entities": {
+    "UserAccount": {
+      "title": "UserAccount",
+      "description": "Centralized account record synced across devices and Firebase Firestore for students, lecturers, and admins.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Unique internal account ID (matches Firestore document ID)."
+        },
+        "authUid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Firebase Auth UID when linked with Google Sign-In."
+        },
+        "username": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_.\\-]+$",
+          "description": "Login username or lowercase student code."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "minLength": 5,
+          "maxLength": 150,
+          "description": "Verified contact email address."
+        },
+        "fullName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120,
+          "description": "Full display name of student, lecturer, or admin."
+        },
+        "role": {
+          "type": "string",
+          "enum": ["student", "lecturer", "admin"],
+          "description": "Role-based access control level."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "locked"],
+          "description": "Account activation status."
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 25,
+          "description": "Optional phone number."
+        },
+        "studentCode": {
+          "type": "string",
+          "maxLength": 25,
+          "pattern": "^[a-zA-Z0-9_.\\-]*$",
+          "description": "Student code (MSSV)."
+        },
+        "lecturerCode": {
+          "type": "string",
+          "maxLength": 20,
+          "pattern": "^[a-zA-Z0-9_\\-]*$",
+          "description": "4-digit lecturer identifier."
+        },
+        "className": {
+          "type": "string",
+          "maxLength": 60,
+          "description": "Student class name."
+        },
+        "department": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Faculty or department name."
+        },
+        "major": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Academic major."
+        },
+        "assignedSubjectIds": {
+          "type": "array",
+          "description": "List of subject IDs assigned to a lecturer (bounded to max 50 items)."
+        },
+        "paidSubjectIds": {
+          "type": "array",
+          "description": "List of subject IDs unlocked after manual transfer confirmation (bounded to max 100 items)."
+        },
+        "hasPaidExamAccess": {
+          "type": "boolean",
+          "description": "Whether the student has unlocked at least one mock exam subject."
+        },
+        "examAccessPaidAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "ISO timestamp of latest exam access unlock."
+        },
+        "examAccessOrderCode": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]*$",
+          "description": "Reference order code for manual confirmation."
+        },
+        "lastLogin": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "ISO timestamp of latest sign-in."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server-validated creation timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server-validated last modification timestamp."
+        }
+      },
+      "required": ["id", "username", "email", "fullName", "role", "status", "createdAt", "updatedAt"]
+    },
+    "AdminRegistry": {
+      "title": "AdminRegistry",
+      "description": "Authoritative admin role lookup document keyed by Firebase Auth UID.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "minLength": 5,
+          "maxLength": 150
+        },
+        "fullName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "email", "fullName", "createdAt"]
+    },
+    "DeletedUserTombstone": {
+      "title": "DeletedUserTombstone",
+      "description": "Immutable tombstone tracking deleted user IDs so cross-device sync does not resurrect removed accounts.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "deletedByUid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "deletedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId", "deletedByUid", "deletedAt"]
+    },
+    "PaymentUnlockOrder": {
+      "title": "PaymentUnlockOrder",
+      "description": "Manual bank-transfer unlock request for mock exams (10.000 VND per subject) verified by Admin/Lecturer.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "orderCode": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "authUid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "subjectId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "subjectName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 150
+        },
+        "amount": {
+          "type": "number"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "paid", "cancelled"]
+        },
+        "confirmedBy": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "orderCode", "userId", "authUid", "subjectId", "subjectName", "amount", "status", "createdAt", "updatedAt"]
+    },
+    "ActivityLog": {
+      "title": "ActivityLog",
+      "description": "Immutable security & activity audit log synced across Cloud Firestore and Express API.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "authUid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "userRole": {
+          "type": "string",
+          "enum": ["student", "lecturer", "admin"]
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400
+        },
+        "timestamp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "ipAddress": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "userId", "userName", "userRole", "action", "target", "timestamp", "ipAddress", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserAccount" },
+      "description": "PII-protected centralized user accounts (only owner or verified admin can read/write)."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminRegistry" },
+      "description": "Verified admin lookup records."
+    },
+    "/deleted_users/{deletedId}": {
+      "schema": { "$ref": "#/entities/DeletedUserTombstone" },
+      "description": "Deleted user ID tombstones managed strictly by Admins."
+    },
+    "/payment_orders/{orderId}": {
+      "schema": { "$ref": "#/entities/PaymentUnlockOrder" },
+      "description": "Per-subject manual transfer unlock requests confirmed by Admin/Lecturer."
+    },
+    "/activity_logs/{logId}": {
+      "schema": { "$ref": "#/entities/ActivityLog" },
+      "description": "Immutable activity and security audit logs readable only by verified Admin."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Allow: /subjects
+Allow: /practice
+Allow: /exams
+Allow: /materials
+Allow: /leaderboard
+
+# Disallow indexing of private dashboards and authenticated areas
+Disallow: /admin
+Disallow: /admin_portal
+Disallow: /lecturer
+Disallow: /lecturer_portal
+Disallow: /exam_room
+Disallow: /analytics
+Disallow: /profile
+Disallow: /api/
+
+Sitemap: https://ais-pre-cywyvj3fhc4w6shxgdn3bg-871641299692.asia-east1.run.app/sitemap.xml

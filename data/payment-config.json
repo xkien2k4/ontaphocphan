@@ -1,0 +1,11 @@
+{
+  "provider": "sepay",
+  "bankCode": "",
+  "bankName": "Chưa chọn ngân hàng",
+  "accountNumber": "",
+  "accountName": "",
+  "examFeeVnd": 10000,
+  "webhookToken": "",
+  "enabled": false,
+  "updatedAt": "2026-11-16T01:45:29.958Z"
+}

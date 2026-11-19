@@ -1,0 +1,301 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // =========================================================================
+    // GLOBAL HARDENED PRIMITIVES
+    // =========================================================================
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isBootstrappedAdmin() {
+      return isVerified()
+        && request.auth.token.email != null
+        && request.auth.token.email.lower() == 'nguyenvxkien@gmail.com';
+    }
+
+    function isAdmin() {
+      return isBootstrappedAdmin()
+        || (isVerified() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)));
+    }
+
+    // =========================================================================
+    // ENTITY VALIDATION BLUEPRINTS
+    // =========================================================================
+    function isValidAdminRegistry(data) {
+      return data.keys().hasAll(['uid', 'email', 'fullName', 'createdAt'])
+        && data.keys().hasOnly(['uid', 'email', 'fullName', 'createdAt'])
+        && data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 && data.uid.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.uid == request.auth.uid
+        && data.email is string && data.email.size() >= 5 && data.email.size() <= 150
+        && data.fullName is string && data.fullName.size() >= 2 && data.fullName.size() <= 120
+        && data.createdAt is timestamp;
+    }
+
+    function isValidUserAccount(data) {
+      return data.keys().hasAll(['id', 'username', 'email', 'fullName', 'role', 'status', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly([
+          'id', 'authUid', 'username', 'email', 'fullName', 'role', 'status',
+          'phone', 'studentCode', 'lecturerCode', 'className', 'department', 'major',
+          'assignedSubjectIds', 'paidSubjectIds', 'hasPaidExamAccess',
+          'examAccessPaidAt', 'examAccessOrderCode', 'lastLogin', 'createdAt', 'updatedAt'
+        ])
+        && data.id is string && data.id.size() >= 3 && data.id.size() <= 128 && data.id.matches('^[a-zA-Z0-9_\\-]+$')
+        && (!('authUid' in data) || (data.authUid is string && data.authUid.size() >= 1 && data.authUid.size() <= 128 && data.authUid.matches('^[a-zA-Z0-9_\\-]+$')))
+        && data.username is string && data.username.size() >= 2 && data.username.size() <= 64 && data.username.matches('^[a-zA-Z0-9_.\\-]+$')
+        && data.email is string && data.email.size() >= 5 && data.email.size() <= 150
+        && data.fullName is string && data.fullName.size() >= 2 && data.fullName.size() <= 120
+        && data.role in ['student', 'lecturer', 'admin']
+        && data.status in ['active', 'locked']
+        && (!('phone' in data) || (data.phone is string && data.phone.size() <= 25))
+        && (!('studentCode' in data) || (data.studentCode is string && data.studentCode.size() <= 25 && data.studentCode.matches('^[a-zA-Z0-9_.\\-]*$')))
+        && (!('lecturerCode' in data) || (data.lecturerCode is string && data.lecturerCode.size() <= 20 && data.lecturerCode.matches('^[a-zA-Z0-9_\\-]*$')))
+        && (!('className' in data) || (data.className is string && data.className.size() <= 60))
+        && (!('department' in data) || (data.department is string && data.department.size() <= 120))
+        && (!('major' in data) || (data.major is string && data.major.size() <= 120))
+        && (!('assignedSubjectIds' in data) || (
+          data.assignedSubjectIds is list
+          && data.assignedSubjectIds.size() <= 50
+          && (data.assignedSubjectIds.size() == 0 || data.assignedSubjectIds[0] is string)
+        ))
+        && (!('paidSubjectIds' in data) || (
+          data.paidSubjectIds is list
+          && data.paidSubjectIds.size() <= 100
+          && (data.paidSubjectIds.size() == 0 || data.paidSubjectIds[0] is string)
+        ))
+        && (!('hasPaidExamAccess' in data) || (data.hasPaidExamAccess is bool))
+        && (!('examAccessPaidAt' in data) || (data.examAccessPaidAt is string && data.examAccessPaidAt.size() <= 64))
+        && (!('examAccessOrderCode' in data) || (data.examAccessOrderCode is string && data.examAccessOrderCode.size() <= 64 && data.examAccessOrderCode.matches('^[a-zA-Z0-9_\\-]*$')))
+        && (!('lastLogin' in data) || (data.lastLogin is string && data.lastLogin.size() <= 64))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidDeletedUserTombstone(data) {
+      return data.keys().hasAll(['userId', 'deletedByUid', 'deletedAt'])
+        && data.keys().hasOnly(['userId', 'deletedByUid', 'deletedAt'])
+        && data.userId is string && data.userId.size() >= 3 && data.userId.size() <= 128 && data.userId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.deletedByUid is string && data.deletedByUid.size() >= 1 && data.deletedByUid.size() <= 128 && data.deletedByUid.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.deletedByUid == request.auth.uid
+        && data.deletedAt is timestamp;
+    }
+
+    function isValidPaymentOrder(data) {
+      return data.keys().hasAll(['id', 'orderCode', 'userId', 'authUid', 'subjectId', 'subjectName', 'amount', 'status', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'orderCode', 'userId', 'authUid', 'subjectId', 'subjectName', 'amount', 'status', 'confirmedBy', 'createdAt', 'updatedAt'])
+        && data.id is string && data.id.size() >= 3 && data.id.size() <= 128 && data.id.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.orderCode is string && data.orderCode.size() >= 4 && data.orderCode.size() <= 64 && data.orderCode.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.userId is string && data.userId.size() >= 3 && data.userId.size() <= 128 && data.userId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.authUid is string && data.authUid.size() >= 1 && data.authUid.size() <= 128 && data.authUid.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.subjectId is string && data.subjectId.size() >= 2 && data.subjectId.size() <= 80 && data.subjectId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.subjectName is string && data.subjectName.size() >= 2 && data.subjectName.size() <= 150
+        && data.amount is number && data.amount >= 1000 && data.amount <= 10000000
+        && data.status in ['pending', 'paid', 'cancelled']
+        && (!('confirmedBy' in data) || (data.confirmedBy is string && data.confirmedBy.size() <= 120))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidActivityLog(data) {
+      return data.keys().hasAll(['id', 'userId', 'userName', 'userRole', 'action', 'target', 'timestamp', 'ipAddress', 'createdAt'])
+        && data.keys().hasOnly(['id', 'authUid', 'userId', 'userName', 'userRole', 'action', 'target', 'timestamp', 'ipAddress', 'createdAt'])
+        && data.id is string && data.id.size() >= 3 && data.id.size() <= 128 && data.id.matches('^[a-zA-Z0-9_\\-]+$')
+        && (!('authUid' in data) || (data.authUid is string && data.authUid.size() >= 1 && data.authUid.size() <= 128 && data.authUid.matches('^[a-zA-Z0-9_\\-]+$')))
+        && data.userId is string && data.userId.size() >= 1 && data.userId.size() <= 128 && data.userId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.userName is string && data.userName.size() >= 1 && data.userName.size() <= 150
+        && data.userRole in ['student', 'lecturer', 'admin']
+        && data.action is string && data.action.size() >= 1 && data.action.size() <= 120
+        && data.target is string && data.target.size() >= 1 && data.target.size() <= 400
+        && data.timestamp is string && data.timestamp.size() >= 1 && data.timestamp.size() <= 64
+        && data.ipAddress is string && data.ipAddress.size() >= 1 && data.ipAddress.size() <= 64
+        && data.createdAt is timestamp;
+    }
+
+    // =========================================================================
+    // COLLECTION RULES
+    // =========================================================================
+
+    match /admins/{adminId} {
+      allow get: if isValidId(adminId) && isVerified() && (request.auth.uid == adminId || isBootstrappedAdmin());
+      allow list: if false;
+      allow create: if isValidId(adminId)
+        && isBootstrappedAdmin()
+        && request.auth.uid == adminId
+        && isValidAdminRegistry(incoming())
+        && incoming().createdAt == request.time;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    match /users/{userId} {
+      allow get: if isValidId(userId) && isVerified() && (
+        isAdmin()
+        || userId == request.auth.uid
+        || (resource != null && resource.data.authUid == request.auth.uid)
+      );
+
+      allow list: if isVerified() && (
+        isBootstrappedAdmin()
+        || resource.data.authUid == request.auth.uid
+      );
+
+      allow create: if isValidId(userId)
+        && isVerified()
+        && isValidUserAccount(incoming())
+        && incoming().id == userId
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin()
+          || (
+            userId == request.auth.uid
+            && incoming().authUid == request.auth.uid
+            && incoming().role == 'student'
+            && incoming().status == 'active'
+            && (!('hasPaidExamAccess' in incoming()) || incoming().hasPaidExamAccess == false)
+            && (!('paidSubjectIds' in incoming()) || incoming().paidSubjectIds.size() == 0)
+            && !('lecturerCode' in incoming())
+            && !('assignedSubjectIds' in incoming())
+          )
+        );
+
+      allow update: if isValidId(userId)
+        && isVerified()
+        && isValidUserAccount(incoming())
+        && incoming().id == userId
+        && incoming().id == existing().id
+        && incoming().username == existing().username
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          (
+            isAdmin()
+            && incoming().diff(existing()).affectedKeys().hasOnly([
+              'authUid', 'email', 'fullName', 'role', 'status',
+              'phone', 'studentCode', 'lecturerCode', 'className', 'department', 'major',
+              'assignedSubjectIds', 'paidSubjectIds', 'hasPaidExamAccess',
+              'examAccessPaidAt', 'examAccessOrderCode', 'lastLogin', 'updatedAt'
+            ])
+          )
+          || (
+            (userId == request.auth.uid || existing().authUid == request.auth.uid)
+            && incoming().role == existing().role
+            && incoming().status == existing().status
+            && incoming().diff(existing()).affectedKeys().hasOnly([
+              'fullName', 'phone', 'studentCode', 'className', 'major', 'lastLogin', 'updatedAt'
+            ])
+          )
+        );
+
+      allow delete: if isValidId(userId) && isAdmin() && userId != 'usr_admin';
+    }
+
+    match /deleted_users/{deletedId} {
+      allow get: if isValidId(deletedId) && isAdmin();
+      allow list: if isBootstrappedAdmin();
+      allow create: if isValidId(deletedId)
+        && isAdmin()
+        && isValidDeletedUserTombstone(incoming())
+        && incoming().userId == deletedId
+        && incoming().deletedAt == request.time;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    match /payment_orders/{orderId} {
+      allow get: if isValidId(orderId) && isVerified() && (
+        isAdmin()
+        || (resource != null && resource.data.authUid == request.auth.uid)
+      );
+
+      allow list: if isVerified() && (
+        isBootstrappedAdmin()
+        || resource.data.authUid == request.auth.uid
+      );
+
+      allow create: if isValidId(orderId)
+        && isVerified()
+        && isValidPaymentOrder(incoming())
+        && incoming().id == orderId
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && exists(/databases/$(database)/documents/users/$(incoming().userId))
+        && (
+          isAdmin()
+          || (
+            incoming().authUid == request.auth.uid
+            && incoming().status == 'pending'
+            && !('confirmedBy' in incoming())
+          )
+        );
+
+      allow update: if isValidId(orderId)
+        && isVerified()
+        && isValidPaymentOrder(incoming())
+        && incoming().id == orderId
+        && incoming().id == existing().id
+        && incoming().orderCode == existing().orderCode
+        && incoming().userId == existing().userId
+        && incoming().authUid == existing().authUid
+        && incoming().subjectId == existing().subjectId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          (
+            isAdmin()
+            && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'confirmedBy', 'updatedAt'])
+          )
+          || (
+            existing().authUid == request.auth.uid
+            && existing().status == 'pending'
+            && incoming().status == 'cancelled'
+            && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt'])
+          )
+        );
+
+      allow delete: if isValidId(orderId) && isAdmin();
+    }
+
+    match /activity_logs/{logId} {
+      allow get: if isValidId(logId) && isAdmin();
+      allow list: if isBootstrappedAdmin();
+      allow create: if isValidId(logId)
+        && isVerified()
+        && isValidActivityLog(incoming())
+        && incoming().id == logId
+        && incoming().createdAt == request.time
+        && (
+          isAdmin()
+          || (
+            incoming().authUid == request.auth.uid
+            && incoming().userRole == 'student'
+          )
+        );
+      allow update: if false;
+      allow delete: if isValidId(logId) && isAdmin();
+    }
+  }
+}

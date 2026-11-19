@@ -1,0 +1,6 @@
+{
+  "name": "IT Study Platform - Khoa Công nghệ Thông tin",
+  "description": "Hệ thống ôn tập và thi thử trực tuyến dành cho sinh viên Khoa Công nghệ Thông tin với ngân hàng câu hỏi, phân quyền Sinh viên - Giảng viên - Admin, thống kê học tập và bảng xếp hạng.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

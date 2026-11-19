@@ -1,0 +1,23 @@
+[
+  {
+    "id": "pay_1794910583361_1_3z4m",
+    "orderCode": "DHHPEXJXWC3A",
+    "userId": "usr_stu_1794806335272_1_s60b",
+    "username": "202411223344",
+    "fullName": "Nguyễn Văn Test",
+    "studentCode": "202411223344",
+    "email": "teststudent@gmail.com",
+    "subjectId": "sub_dsa",
+    "subjectName": "Cấu trúc dữ liệu và giải thuật",
+    "amount": 10000,
+    "status": "paid",
+    "qrUrl": "",
+    "bankCode": "ICB",
+    "accountNumber": "10387719154",
+    "accountName": "NGUYEN VU XUAN KIEN",
+    "createdAt": "2026-11-17T10:16:23.360Z",
+    "paidAt": "2026-11-17T10:16:23.360Z",
+    "gateway": "Admin: Nguyễn Vũ Xuân Kiên",
+    "confirmedBy": "Admin: Nguyễn Vũ Xuân Kiên"
+  }
+]
